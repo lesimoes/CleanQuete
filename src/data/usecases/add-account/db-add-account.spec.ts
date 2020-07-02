@@ -6,12 +6,6 @@ import {
   AddAccountRepository
 } from './db-add-account-protocols';
 
-interface SutTypes {
-  sut: DbAddAccount,
-  encrypterStub: Encrypter,
-  addAccountRepositoryStub: AddAccountRepository,
-}
-
 const makeEncrypter = (): Encrypter => {
   class EncrypterStub implements Encrypter {
     async encrypt (value: string): Promise<string> {
@@ -34,6 +28,12 @@ const makeAddAccountRepository = (): AddAccountRepository => {
     }
   }
   return new AddAccountRepositoryStub();
+}
+
+interface SutTypes {
+  sut: DbAddAccount,
+  encrypterStub: Encrypter,
+  addAccountRepositoryStub: AddAccountRepository,
 }
 
 const makeSut = (): SutTypes => {
